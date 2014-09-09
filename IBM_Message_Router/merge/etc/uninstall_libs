@@ -1,0 +1,13 @@
+#!/bin/sh
+
+FILES=/opt/IBM_Message_Router/lib/*
+
+for file in $FILES
+do
+  file=${file##*/}
+  if [ -e /usr/lib/$file ] 
+  then
+    echo "Removing /usr/lib/$file"
+    rm /usr/lib/$file
+  fi
+done

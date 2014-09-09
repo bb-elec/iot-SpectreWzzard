@@ -1,0 +1,22 @@
+#!/bin/sh
+
+FILES=/opt/IBM_Message_Router/lib/*
+
+MISSING_LIBS=0
+
+for file in $FILES
+do
+  file=${file##*/}
+  if ! [ -e /usr/lib/$file ] 
+  then
+    MISSING_LIBS=1
+	break
+  fi
+done
+
+if [ $MISSING_LIBS ] 
+then
+  echo "Installing libs..."
+  cp /opt/IBM_Message_Router/lib/* /usr/lib/
+fi
+
